@@ -206,8 +206,8 @@ class UserCheckout(LoginRequiredMixin, TemplateView, CartMixin):
             "invoice" : uuid.uuid4(),
             "currency_code" : "USD",
             "notify_url" : f"http://{host}/paypal/",
-            "return_url" : f"http://{host}/View/Cart/Checkout/Success",
-            "cancel_url" : f"http://{host}/View/Cart",
+            "return_url" : f"http://{host}/view/cart/checkout/success",
+            "cancel_url" : f"http://{host}/view/cart",
         }
         paypal_payment = PayPalPaymentsForm(initial=paypal_checkout)
         paypal_context = {"paypal_payment" : paypal_payment}
