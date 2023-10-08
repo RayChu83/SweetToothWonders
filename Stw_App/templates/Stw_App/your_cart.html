@@ -33,36 +33,42 @@
     </header>
     <div class="user_cart">
         <div class="cart-items">
-            {% for product in cart%}
-            <div class="products-view">
-
-                <div class="product-image-section">
-                    <span class="item-remove">
-                        <h2><a href="{% url 'Stw_App:remove_cart_item' pk=product.id %}"><i class="fa-solid fa-xmark"></i></a></h2>
-                    </span>
-                    {% if product.item.candy_image %}
-                        <a href="{% url 'Stw_App:view_product' pk=product.item.id %}"><img class="product-image" width="175px" src="{{ product.item.candy_image.url }}" alt=""></a>
-                    {% else %}
-                        <a href="{% url 'Stw_App:view_product' pk=produuct.item.id %}"><img class="product-image" width="175px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
-                    {% endif %}
+            {% if cart.count == 0 %}
+                <div class="content-center">
+                    <h2 style="font-family: Poppins;">0 results found</h2>
                 </div>
+            {% else %}
+                {% for product in cart%}
+                <div class="products-view">
 
-                <div class="product-info">
-                    <a class="link" href="{% url 'Stw_App:view_product' pk=product.item.id %}">
-                        <h2>{{product.item.candy_name}}</h2>
-                    </a>
-                    <p><a class="link_two" href="{{product.item.brand_url}}" target="_blank">{{product.item.brand}}</a>
-                        •
-                        {% if product.item.in_stock%}
-                            <span class="text-green">In Stock</span>
+                    <div class="product-image-section">
+                        <span class="item-remove">
+                            <h2><a href="{% url 'Stw_App:remove_cart_item' pk=product.id %}"><i class="fa-solid fa-xmark"></i></a></h2>
+                        </span>
+                        {% if product.item.candy_image %}
+                            <a href="{% url 'Stw_App:view_product' pk=product.item.id %}"><img class="product-image" width="175px" src="{{ product.item.candy_image.url }}" alt=""></a>
                         {% else %}
-                            <span class="text-red">Not In Stock</span>
+                            <a href="{% url 'Stw_App:view_product' pk=produuct.item.id %}"><img class="product-image" width="175px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
                         {% endif %}
-                    </p>
-                    <h4>Price: ${{product.item.cost}} {% if product.item.retail_cost > product.item.cost %}<span class="retail-cost">${{product.item.retail_cost}}</span>{% endif %}</h4>
+                    </div>
+
+                    <div class="product-info">
+                        <a class="link" href="{% url 'Stw_App:view_product' pk=product.item.id %}">
+                            <h2>{{product.item.candy_name}}</h2>
+                        </a>
+                        <p><a class="link_two" href="{{product.item.brand_url}}" target="_blank">{{product.item.brand}}</a>
+                            •
+                            {% if product.item.in_stock%}
+                                <span class="text-green">In Stock</span>
+                            {% else %}
+                                <span class="text-red">Not In Stock</span>
+                            {% endif %}
+                        </p>
+                        <h4>Price: ${{product.item.cost}} {% if product.item.retail_cost > product.item.cost %}<span class="retail-cost">${{product.item.retail_cost}}</span>{% endif %}</h4>
+                    </div>
                 </div>
-            </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
         <div class="total">
             {% if total %}
