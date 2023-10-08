@@ -17,7 +17,7 @@
     {% endif %}
     <h5 class="hint">All fields required*</h5>
     <div class="form-class">
-        <form method="POST">
+        <form action="" method="POST">
             {% csrf_token %}
             {{form.as_p}}
             <input type="submit" value="Login Now" class="submit-btn"> <br>
