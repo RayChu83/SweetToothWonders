@@ -26,7 +26,7 @@ SECRET_KEY = str(os.environ.get("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["web-production-d8824.up.railway.app", "http://127.0.0.1:8000/"]
+ALLOWED_HOSTS = ["web-production-d8824.up.railway.app", "127.0.0.1"]
  
 CSRF_TRUSTED_ORIGINS=["https://web-production-d8824.up.railway.app"]
 # Application definition
@@ -115,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 
-TIME_ZONE = "UTC"
+TIME_ZONE = 'America/New_York'
 
 
 USE_I18N = True
