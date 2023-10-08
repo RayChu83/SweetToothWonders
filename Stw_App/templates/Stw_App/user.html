@@ -1,0 +1,78 @@
+{% extends 'Stw_App/base.html' %}
+{% load static %}
+{% block title %} <title>View Profile</title> {% endblock title %}
+{% block content %}
+    <main>
+        <header>
+            <h4><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></h4>
+        </header>
+        {% if request.user == user %}
+            <div class="action-class profile-orders-class">
+                <a class="action-btn profile-orders-btn" href="{% url 'Stw_App:your_orders' %}"><i class="fa-solid fa-bag-shopping"></i> Your Orders</a>
+            </div>
+            <div class="sbs-btns">
+                <a class="sbs-btn" href="{% url 'Stw_App:cart' %}"><i class="fa-solid fa-cart-shopping"></i> See Cart</a>
+                <a class="sbs-btn" href="{% url 'Stw_App:saved_later' %}"><i class="fa-solid fa-clock"></i> Saved Later</a>
+            </div>
+        {% endif %}
+        <div class="content-center">
+            <div class="user-about">
+                <a class="link" href="{% url 'Stw_App:profile_page' pk=user.id %}"><h1>@{{user}}</h1></a>
+                <p><i class="fa-solid fa-calendar-days"></i> Join Date: {{user.date_joined|timesince}} ago</p>
+                <p><i class="fa-solid fa-envelope"></i> Mailing Adress: {{user.email}}</p>
+                <div class="user-links">
+                    <a class="link_two" href="{% url 'Stw_App:profile_products' pk=user.id %}"><i class="fa-solid fa-caret-down"></i> {% if all_products.count == None %} 0 {% else %} {{all_products.count}} {% endif %}
+                        {% if all_products.count == 1 %}
+                            product
+                        {% else %}
+                            products
+                        {% endif %}
+                    </a>
+                    <a class="link_two" href="{% url 'Stw_App:profile_feedback' pk=user.id %}"><i class="fa-solid fa-caret-down"></i> {{comments.count}} 
+                        {% if comments.count == 1 %}
+                            review
+                        {% else %}
+                            reviews
+                        {% endif %}
+                        given
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="user-products">
+            <table style="margin-top: 15px;">
+                <tr>
+                    <td width="50%"><p style="margin: 0 ;font-weight: bold;font-family: Roboto;" class="text-green">Recently Added Products. . . </p></td>
+                    {% if all_products.count %}
+                    <td style="text-align: end;"><p><a class="link_three" href="{% url 'Stw_App:profile_products' pk=user.id %}">See All ({{all_products.count}}) <i class="fa-solid fa-caret-down"></i></a></p></td>
+                    {% endif %}
+                </tr>
+            </table>
+        </div>
+        <section id="user-products">
+            {% if not preview_products %}
+                <div class="content-center">
+                    <h2 style="font-family: Poppins;">0 results found</h2>
+                </div>
+            {% endif %}
+            {% for product in preview_products %}
+            <div class="products-view">
+                <div class="product-image-section">
+                    {% if product.candy_image %}
+                    <a href="{% url 'Stw_App:view_product' pk=product.id %}"><img class="product-image" width="175px" src="{{ product.candy_image.url }}" alt=""></a>
+                    {% else %}
+                        <a href="{% url 'Stw_App:view_product' pk=product.id %}"><img class="product-image"  width="175px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
+                    {% endif %}
+                </div>
+                <div class="product-info">
+                    <a class="link" href="{% url 'Stw_App:view_product' pk=product.id %}"><h2>{{product.candy_name}}</h2></a>
+                    {% if product.candy_rating %}
+                        {% include 'Stw_App/product_ratings.html' %}
+                    {% endif %}
+                    <h3>Price: ${{product.cost}}</h3>
+                </div>
+            </div>
+        {% endfor %}
+        </section>
+    </main>
+{% endblock content %}

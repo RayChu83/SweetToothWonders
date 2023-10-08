@@ -1,0 +1,83 @@
+<!-- product star ratings -->
+{% if product.candy_rating >= 1 and product.candy_rating <= 1.4 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+    </a></p>
+{% elif product.candy_rating >= 1.5 and product.candy_rating <= 1.9 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star-half-stroke"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+    </a></p>
+{% elif product.candy_rating >= 2 and product.candy_rating <= 2.4 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+    </a></p>
+{% elif product.candy_rating >= 2.5 and product.candy_rating <= 2.9 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star-half-stroke"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+    </a></p>
+{% elif product.candy_rating >= 3 and product.candy_rating <= 3.4 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+    </a></p>
+{% elif product.candy_rating >= 3.5 and product.candy_rating <= 3.9 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star-half-stroke"></i>
+        <i class="fa-regular fa-star"></i>
+    </a></p>
+{% elif product.candy_rating >= 4 and product.candy_rating <= 4.4 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-regular fa-star"></i>
+    </a></p>
+{% elif product.candy_rating >= 4.5 and product.candy_rating <= 4.9 %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star-half-stroke"></i>
+    </a></p>
+{% else %}
+    <p><a class="stars" href="{% url 'Stw_App:view_product' pk=product.id %}#product-comments" >
+        <span style=" color: black; font-size: .8em; font-weight: bold;">{{product.candy_rating|floatformat:1}}</span>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+        <i class="fa-solid fa-star"></i>
+    </a></p>
+{% endif %}

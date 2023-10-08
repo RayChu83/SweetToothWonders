@@ -1,0 +1,119 @@
+{% extends 'Stw_App/base.html' %}
+{% load static %}
+{% block title %}<title>View Cart</title>{% endblock title %}
+{% block content %}
+<main>
+    <header>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                <div class="error-message">
+                    {{message}}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <table>
+            <tr>
+                <td width="50%">
+                    <p><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></p>
+                </td>
+                <td style="text-align: end;">
+                    <p><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-plus"></i> Add Items</a></p>
+                </td>
+            </tr>
+        </table>
+        <h4 class="hint text-green">{{cart.count}}
+            {% if cart.count == 1%}
+                item
+            {% else %}
+                items
+            {% endif %}
+            in your shoppping cart</h4>
+    </header>
+    <div class="user_cart">
+        <div class="cart-items">
+            {% for product in cart%}
+            <div class="products-view">
+
+                <div class="product-image-section">
+                    <span class="item-remove">
+                        <h2><a href="{% url 'Stw_App:remove_cart_item' pk=product.id %}"><i class="fa-solid fa-xmark"></i></a></h2>
+                    </span>
+                    {% if product.item.candy_image %}
+                        <a href="{% url 'Stw_App:view_product' pk=product.item.id %}"><img class="product-image" width="175px" src="{{ product.item.candy_image.url }}" alt=""></a>
+                    {% else %}
+                        <a href="{% url 'Stw_App:view_product' pk=produuct.item.id %}"><img class="product-image" width="175px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
+                    {% endif %}
+                </div>
+
+                <div class="product-info">
+                    <a class="link" href="{% url 'Stw_App:view_product' pk=product.item.id %}">
+                        <h2>{{product.item.candy_name}}</h2>
+                    </a>
+                    <p><a class="link_two" href="{{product.item.brand_url}}" target="_blank">{{product.item.brand}}</a>
+                        •
+                        {% if product.item.in_stock%}
+                            <span class="text-green">In Stock</span>
+                        {% else %}
+                            <span class="text-red">Not In Stock</span>
+                        {% endif %}
+                    </p>
+                    <h4>Price: ${{product.item.cost}} {% if product.item.retail_cost > product.item.cost %}<span class="retail-cost">${{product.item.retail_cost}}</span>{% endif %}</h4>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="total">
+            {% if total %}
+                <div class="cart-total">
+                    <table>
+                        {% for product in cart %}
+                            <tr>
+                                <td>
+                                    <a class="link_two"
+                                        href="{% url 'Stw_App:view_product' pk=product.item.id %}">{{product.item.candy_name}}</a>
+                                </td>
+                                <td>
+                                    ${{product.item.cost}}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td><br></td>
+                            <td><br></td>
+                        </tr>
+                        <tr>
+                            <td width="100%">Subtotal:</td>
+                            <td>${{ subtotal }}</td>
+                        </tr>
+                        <tr>
+                            <td>Sales Tax:</td>
+                            <td>${{ sales_tax }}</td>
+                        </tr>
+                        <tr>
+                            <td>Shipping and Handling:</td>
+                            <td>${{ shipping }}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <hr>
+                            </td>
+                            <td>
+                                <hr>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Order total:</td>
+                            <td><strong>${{ total }}</strong></td>
+                        </tr>
+                    </table>
+                    <span class="action-class">
+                        <a href="{% url 'Stw_App:checkout' %}" class="action-btn"><i class="fa-solid fa-reply fa-flip-horizontal"></i> Continue To Checkout</a>
+                    </span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock content %}

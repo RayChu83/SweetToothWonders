@@ -1,0 +1,40 @@
+{% extends 'Stw_App/base.html' %}
+{% block title %}
+    <title>Sweet Tooth Wonders</title>
+{% endblock title %}
+
+{% block content %}
+    <main style="margin: 55px auto;">
+        <div class="banner">
+
+        </div>
+        <div class="cta-content">
+            <h1 class="headline" style="font-size: 40px; margin: 0 15px;">Satisfy Your Sweet Tooth!</h1>
+            <p style="font-family: 'Poppins'; margin: 0 20px;" class="headline">Discover an Endless Selection of Candy From Classic Favorites to Unique Confections</p>
+            <div class="cta">
+                <a href="{% url 'Stw_App:marketplace' %}">View Candy</a>
+            </div>
+        </div>
+        <div class="about-section">
+            <div class="about-content">
+                <h2 id="first-about">Welcome to STWonders - Your Candy Wonderland!</h2>
+                <ul>
+                    <li><p>STWonders, short for Sweet Tooth Wonders, is your candy haven. Explore a delightful array of candies, from classics to unique treats, all designed to satisfy your sweet tooth.</p></li>
+                </ul>
+                <h2>Why STWonders?</h2>
+                <div class="why_us">
+                    <ul>
+                        <li><strong>A Candy Wonderland:</strong><br> Dive into a candy wonderland where every sweet dream comes true. We offer an extensive range of candies, from classic favorites to unique confections that will tantalize your taste buds.</li>
+                    </ul>
+                    <ul>
+                        <li><strong>Free Shipping:</strong><br> Enjoy the sweetness of savings! We offer free shipping on all orders over $25, making it even easier to satisfy your sweet cravings without breaking the bank.</li>
+                    </ul>
+                </div>
+                <h2>Join the Candy Adventure!</h2>
+                <ul>
+                    <li><p id="last-about"><a class="link" href="{% url 'Stw_App:marketplace' %}"><strong>Join us</strong></a> on this candy adventure and let your sweet tooth wander at Sweet Tooth Wonders!</p></li>
+                </ul>
+            </div>
+        </div>
+    </main>
+{% endblock content %}

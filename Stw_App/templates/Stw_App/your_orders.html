@@ -1,0 +1,75 @@
+{% extends 'Stw_App/base.html' %}
+{% load static %}
+{% block title %}<title>Your orders</title>{% endblock title %}
+{% block content %}
+<main>
+    <header>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="message">
+                <div class="success-message">
+                    {{message}}
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <table>
+            <tr>
+                <td width="50%">
+                    <p><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></p>
+                </td>
+                <td style="text-align: end;">
+                    <p><a class="back-btn" href="{% url 'Stw_App:cart' %}"><i class="fa-solid fa-plus"></i> Add Order</a></p>
+                </td>
+            </tr>
+        </table>
+        <h4 class="hint text-green">{{ordered_products.count}}
+            {% if cart.count == 1%}
+                order made in total
+            {% else %}
+                orders made in total
+            {% endif %}
+        </h4>
+    </header>
+    {% for order in ordered_products %}
+        <div class="orders" style="padding: 0;margin-bottom: 40px;">
+            <div class="purchase-date">
+                <h4 style="margin: 3px;">Purchased on: <span style="font-size: 1.1em;" class="link">{{order.date_added}}</span></h4>
+            </div>
+            <div class="purchase-details">
+                <div class="detail-product-view">
+                
+                    <div class="product-image-section">
+                        {% if order.item.candy_image %}
+                            <img class="product-image" width="225px" src="{{ order.item.candy_image.url }}" alt="">
+                        {% else %}
+                            <img class="product-image"  width="225px" src="{% static 'Stw_App/images/download.jpg' %}" alt="">
+                        {% endif %}
+                    </div>
+                    <div class="product-details" style="width:85%;">
+                        <h3 style="margin:0">{{order.item.candy_name}}</h3>
+                        <p><a class="link_two" href="{{order.item.brand_url}}" target="_blank">{{order.item.brand}}</a> •
+                            {% if order.item.in_stock%}
+                                <span class="text-green">In Stock</span>
+                            {% else %}
+                                <span class="text-red">Not In Stock</span>
+                            {% endif %}
+                        </p>
+                        <h3>Total: ${{order.item.cost}} {% if order.item.retail_cost > order.item.cost %}<span class="retail-cost">${{order.item.retail_cost}}</span>{% endif %}</h3>
+                        <small><a class="link" href="{% url 'Stw_App:view_product' pk=order.item.id %}">View Product Details</a></small>
+                    </div>
+                </div>
+                <div style="margin: 15px 25px;" class="purchase-product-options">
+                    <div class="product-button-options">
+                        {% if order.item.in_stock%}
+                            <a style="background-color: rgb(255, 153, 0); color:white" class="product-button" href="{% url 'Stw_App:add_cart_item' pk=order.item.id%}">Purchase Again</a>
+                        {% endif %}
+                        <a style="background-color: rgb(73, 114, 168); color:white" class="product-button" href="{% url 'Stw_App:view_product' pk=order.item.id %}#product-comments">Write a Review</a>
+                        <small>You can request a return, refund, or replacement within 5 days of receiving the product, provided that the product remains unopened.</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</main>
+{% endblock content %}

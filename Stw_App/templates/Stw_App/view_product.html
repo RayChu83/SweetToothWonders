@@ -1,0 +1,170 @@
+{% extends 'Stw_App/base.html' %}
+{% load static %}
+{% block title %} <title>View Product</title> {% endblock title %}
+{% block content %}
+    <main>
+        <header>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        <div class="success-message">
+                            {{message}}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <h4><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Back To Market</a></h4>
+        </header>
+        <div class="product-details-page">
+            <div class="detail-product-view">
+                
+                <div class="product-image-section">
+                    {% if product.candy_image %}
+                        <img class="product-image" width="225px" src="{{ product.candy_image.url }}" alt="">
+                    {% else %}
+                        <img class="product-image"  width="225px" src="{% static 'Stw_App/images/download.jpg' %}" alt="">
+                    {% endif %}
+                </div>
+                    
+                <div class="product-details" style="width:85%;">
+                    <!-- Candy Name -->
+
+                    <h2>{{product.candy_name}}</h2>
+                    <!-- Candy Edit Options -->
+
+                    {% if request.user == product.seller %}
+
+                        <a class="product-edit" href="{% url 'Stw_App:edit_product' pk=product.id %}">Edit Product</a>
+                        <a class="product-remove" href="{% url 'Stw_App:remove_product' pk=product.id %}" onclick="return confirm('Are you sure you want to Permanently Delete {{product.candy_name}}?');"> Remove Product</a><br>
+                    {% endif %}
+                    {% if product.candy_rating == 0 %}
+                        <p>No rating avaliable</p>
+                    {% else %}
+                        {% include 'Stw_App/product_ratings.html' %}
+                    {% endif %}
+                    <!-- Candy Official Site -->
+
+                    <a target="_blank" class="link" href="{{ product.brand_url }}">Visit the {{product.brand}} Store</a>
+                    <!-- Candy In-Stock or Not -->
+                    
+                    <p><a class="link_two" href="{{product.brand_url}}" target="_blank">{{product.brand}}</a> •
+                        {% if product.in_stock%}
+                           <span class="text-green">In Stock</span>
+                        {% else %}
+                            <span class="text-red">Not In Stock</span>
+                        {% endif %}
+                    </p>
+                    <!-- Candy Descriptions -->
+
+                    {% if product.candy_description %}
+                        <p style="font-size: .7em;">{{product.candy_description}}</p>
+                    {% else %}
+                        <p style="font-size: .7em;">No description avaliable for this product</p>
+                    {% endif %}
+                    <!-- Candy Costs -->
+                    <h3>Price: ${{product.cost}} {% if product.retail_cost > product.cost %}<span class="retail-cost">${{product.retail_cost}}</span>{% endif %}</h3>
+                </div>
+            </div>
+
+            <div class="additional-information" style="padding: 0 25px; margin: 35px 0">
+                <small>Package Weight: <strong>{{product.package_weight_lbs}} lb</strong></small>
+                <p>Product Provider: <a href="{% url 'Stw_App:profile_page' pk=product.seller.id%}" class="link_two">@{{product.seller}}</a></p>
+                <p>Free shipping up to $25 <a href="{% url 'Stw_App:cart' %}" class="link_two">total purchase</a></p>
+                <div class="product-button-options">
+                    {% if product.in_stock %}
+                        <a style="background-color: rgb(255, 153, 0); color:white" class="product-button" href="{% url 'Stw_App:add_cart_item' pk=product.id%}">Add To Cart</a>
+                    {% endif %}
+                    <a style="background-color: rgb(73, 114, 168); color: white;" class="product-button" href="{% url 'Stw_App:add_saved_later' pk=product.id%}">Save For Later</a>
+                </div>
+                <small>You can request a return, refund, or replacement within 5 days of receiving the product, provided that the product remains unopened.</small>
+            </div>
+        </div>
+        <div class="comments">
+            {% if request.user.is_authenticated %}
+                <div class="comments-form">
+                    <div class="form-class">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {% for field in form%} 
+                                <div class="form_field">
+                                    <div class="form-label">
+                                        {{field.label}}<br>
+                                    </div>
+                                    <div class="form-input">
+                                        {{field}}
+                                    </div>
+                                </div>  
+                            {% endfor %}
+                            <input class="submit-btn" type="submit" value="Add Comment">
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+            <!-- Product Comments -->
+            <div class="form-class">
+                <form method="get">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <div class="search-icon">
+                                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                            <div class="search-input">
+                                <input class="search_field" name="search" type="text" 
+                                    {% if query %}
+                                        value="{{query}}"
+                                    {% endif %}
+                                    placeholder="Search Reviews..." autocomplete="off"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <section id="product-comments">
+                    {% if not comments and not query %}
+                        <div class="comment-section" style="font-family: 'Poppins';">
+                            <p>Become first to add a comment.</p>
+                        </div>
+                    {% elif not comments and query %}
+                        {% include 'Stw_App/no_results.html' %}
+                    {% else %}
+                        <div class="comment-section" style="font-family: 'Poppins';">
+                            <p>{{comments.count}} 
+                                {% if comments.count > 1 %}
+                                    comments
+                                {% else %}
+                                    comment
+                                {% endif %}
+                                found</p>
+                            {% for comment in comments%}
+                            <div class="comment">
+                                <h2 class="comment-title">{{comment.title}}</h2>
+                                {% if request.user == comment.user %}
+                                    <a class="text-red" href="{% url 'Stw_App:remove_comment' pk=comment.id %}">Remove</a>
+                                {% endif %}
+                                <p class="rating stars"> 
+                                    {% if comment.rating == 1 %}
+                                        <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                    {% elif comment.rating == 2 %}
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                    {% elif comment.rating == 3 %}
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                    {% elif comment.rating == 4 %}
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                    {% else %}
+                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                    {% endif %}
+                                </p>
+                                
+                                <a href="{% url 'Stw_App:profile_page' pk=comment.user.id %}" class="link">@{{comment.user}}</a>
+                                <small>{{comment.post_time|timesince}} ago</small>
+                                <p>{{comment.comment}}</p>
+                                <hr>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+            </section>
+        </div>
+    </main>
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends 'Stw_App/base.html' %}
+{% block title %}<title>Sign Up</title>{% endblock title %}
+
+{% block content %}
+    <main>
+        <header>
+            <h2 class="header-text">Sign Up for Sweet Tooth Wonders</h2>
+        </header>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    <div class="error-message">
+                        <p><i class="fa-solid fa-triangle-exclamation"></i> {{message}} </p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <h5 class="hint">All fields required*</h5>
+        <div class="form-class">
+            <form method="POST">
+                {% csrf_token %}
+                {% for field in form%} 
+                    <div class="form_field">
+                        {{field.label}}<br>
+                        {{field}}
+                    </div>  
+                {% endfor %}
+                <input class="submit-btn" type="submit" class="submit-btn" value="Sign Up Now">
+            </form>
+        </div>
+        <h5 style="color: black;" class="hint">Already have an account <a class="link_two" href="{% url 'Stw_App:login' %}">Login</a></h5>
+    </main>
+{% endblock content %}

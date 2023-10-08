@@ -1,0 +1,92 @@
+{% extends 'Stw_App/base.html' %}
+{% load static %}
+{% block title %}<title>Marketplace</title>{% endblock title %}
+{% block content %}
+    <main>
+
+        <header>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        <div class="success-message">
+                            {{message}}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="form-class">
+                <form method="get">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <div class="search-icon">
+                                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                            </div>
+                            <div class="search-input">
+                                <input class="search_field" name="search" type="text" 
+                                    {% if query %}
+                                        value="{{query}}"
+                                    {% endif %}
+                                    placeholder="Search Products..." autocomplete="off"
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table>
+                <tr>
+                    <td width="50%">
+                        {% if request.user.is_authenticated %}
+                            <p style="color:rgb(116, 190, 120);">You are currently logged in as <a style="color: rgb(116, 190, 120);" class="link" href="{% url 'Stw_App:user_profile' %}">@{{request.user}}</a></p>
+                        {% else %}
+                            <p class="text-red">You are currently not logged in</p>
+                        {% endif %}
+                    </td>
+                    <td style="text-align: end;">
+                        <p>
+                            <a class="link" href="{% url 'Stw_App:add_product' %}"><i class="fa-solid fa-arrow-up-right-from-square"></i> Create Product</a>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            {% if candy.count == 0 %}
+                <h4><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Return to all</a></h4>
+            {% endif %}
+        </header>
+        {% if query and candy.count > 0 %}
+            <div class="content-center" style="margin-top: 8px;">
+                <small style="font-family: Roboto; font-weight: bold;font-size: 14.5px;">{{candy.count}} search {% if candy.count == 1 %} result {% else %} results {% endif %} found for <a class="link_two" href="{% url 'Stw_App:marketplace' %}?search={{query}}">"{{query}}"</a></small>
+            </div>
+        {% endif %}
+        {% if candy %}
+            {% for product in candy %}
+                <div class="products-view">
+                    <div class="product-image-section">
+                        {% if product.candy_image %}
+                            <a href="{% url 'Stw_App:view_product' pk=product.id %}"><img class="product-image" width="200px" src="{{ product.candy_image.url }}" alt=""></a>
+                        {% else %}
+                            <a href="{% url 'Stw_App:view_product' pk=product.id %}"><img class="product-image"  width="200px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
+                        {% endif %}
+                    </div>
+
+                    <div class="product-info">
+                        <a class="link" href="{% url 'Stw_App:view_product' pk=product.id %}"><h2>{{product.candy_name}}</h2></a>
+                        {% if product.candy_rating %}
+                            {% include 'Stw_App/product_ratings.html' %}
+                        {% endif %}
+                        <p><a class="link_two" href="{{product.brand_url}}" target="_blank">{{product.brand}}</a> •
+                            {% if product.in_stock%}
+                                <span class="text-green">In Stock</span>
+                            {% else %}
+                                <span class="text-red">Not In Stock</span>
+                            {% endif %}
+                        </p>
+                        <h3>Price: ${{product.cost}} {% if product.retail_cost > product.cost %}<span class="retail-cost">${{product.retail_cost}}</span>{% endif %}</h3>
+                    </div>
+                </div>
+            {% endfor %}
+            {% else %}
+                {% include 'Stw_App/no_results.html' %}
+        {% endif %}
+    </main>
+{% endblock content %}

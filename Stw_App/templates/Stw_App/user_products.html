@@ -1,0 +1,47 @@
+{% extends 'Stw_App/base.html' %}
+{% load static %}
+{% block title %} <title>Users Products Created</title> {% endblock title %}
+{% block content %}
+    <main>
+        <header>
+            <h4><a class="back-btn" href="{% url 'Stw_App:profile_page' pk=user.id %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></h4>
+        </header>
+        <div class="content-center">
+            <h1 style="font-family: Poppins ;"><a class="link" href="{% url 'Stw_App:profile_page' pk=user.id %}">@{{user}}'s</a> products:</h1>
+        </div>
+        <div class="profile-detail-options">
+            <table>
+                <tr>
+                    <td style="background-color: #dbdbdb;" width="50%"><p style="font-family: Poppins;"><a class="link_two" href="{% url 'Stw_App:profile_products' pk=user.id %}"><i class="fa-solid fa-caret-up"></i> Products</a></p></td>
+                    <td width="50%"><p style="font-family: Poppins;"><a class="link_two" href="{% url 'Stw_App:profile_feedback' pk=user.id %}"><i class="fa-solid fa-caret-down"></i> Feedback Published</a></p></td>
+                </tr>
+            </table>
+        </div>
+        <section id="user-products">
+            {% if not preview_products %}
+                <div class="content-center">
+                    <h2 style="font-family: Poppins;">0 results found</h2>
+                </div>
+            {% endif %}
+            {% for product in all_products %}
+            <div class="products-view">
+                <div class="product-image-section">
+                    {% if product.candy_image %}
+                    <a href="{% url 'Stw_App:view_product' pk=product.id %}"><img class="product-image" width="175px" src="{{ product.candy_image.url }}" alt=""></a>
+                    {% else %}
+                        <a href="{% url 'Stw_App:view_product' pk=product.id %}"><img class="product-image"  width="175px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
+                    {% endif %}
+                </div>
+                <div class="product-info">
+                    <a class="link" href="{% url 'Stw_App:view_product' pk=product.id %}"><h2>{{product.candy_name}}</h2></a>
+                    {% if product.candy_description%}
+                        <p>{{product.candy_description}}</p>
+                    {% else %}
+                        <p>No Description Avaliable</p>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+        </section>
+    </main>
+{% endblock content %}

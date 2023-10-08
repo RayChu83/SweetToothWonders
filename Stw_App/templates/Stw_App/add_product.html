@@ -1,0 +1,34 @@
+{% extends 'Stw_App/base.html' %}
+{% block title %} <title>Add Product</title> {% endblock title %}
+{% block content %}
+    <main>
+        <header>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        <div class="error-message">
+                            <p><i class="fa-solid fa-triangle-exclamation"></i> {{message}} </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <h4><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></h4>
+        </header>
+        <div class="form-class">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form%} 
+                    <div class="form_field">
+                        <div class="form-label">
+                            {{field.label}}<br>
+                        </div>
+                        <div class="form-input">
+                            {{field}}
+                        </div>
+                    </div>  
+                {% endfor %}
+                <input type="submit" class="submit-btn" value="Add Product">
+            </form>
+        </div>
+    </main>
+{% endblock content %}

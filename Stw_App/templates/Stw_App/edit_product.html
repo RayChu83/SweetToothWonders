@@ -1,0 +1,28 @@
+{% extends 'Stw_App/base.html' %}
+{% block title %} <title>Edit Product</title> {% endblock title %}
+{% block content %}
+    <main>
+        <header>
+            <h4><a class="back-btn" href="{{request.META.HTTP_REFERER}}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></h4>
+        </header>
+        <div class="form-class">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% for field in form%} 
+                    <div class="form_field">
+                        <div class="form-label">
+                            {{field.label}}<br>
+                        </div>
+                        <div class="form-input">
+                            {{field}}
+                        </div>
+                    </div>  
+                {% endfor %}
+                <div class="edit-options">
+                    <a class="link" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-share fa-rotate-180"></i> Cancel</a>
+                    <input class="danger-btn" type="submit" value="Save Changes">
+                </div>
+            </form>
+        </div>
+    </main>
+{% endblock content %}

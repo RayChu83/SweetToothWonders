@@ -1,0 +1,792 @@
+/* Wide CSS calls */
+html{
+    scroll-behavior: smooth;
+}
+body{
+    margin: 0;
+    background-color: rgb(247, 247, 247);
+}
+main{
+    margin: 90px auto;
+}
+
+.header-text{
+    font-family: "Fredoka";
+    margin: auto;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.content-center{
+    width: 1100px;
+    margin: auto;
+}
+.user-about{
+    background-color: #dedede;
+    padding: 15px;
+    border-radius: 3px;
+    font-family: "Poppins";
+}
+/* Banner for hero-image */
+.banner{
+    width: 100%;
+    height: 50vh;
+    background-image: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('/static/Stw_App/images/STW-hero-image.jpg');
+    background-size: cover;
+    background-position: center;
+}
+.cta-content{
+    width: 100%;
+    position: absolute;
+    top: 32%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: white;
+}
+/* link styles and other*/
+.stars{
+    color: rgb(214 183 8);
+    text-decoration: none;
+}
+.stars:hover{
+    color: rgb(199, 170, 4);
+}
+.link{
+    color: rgb(83, 111, 151);
+    text-decoration: none;
+    font-weight: bold;
+}
+.link:hover{
+    text-decoration:underline;
+    text-decoration-thickness: 2px;
+}
+.link_two{
+    color: rgb(75, 97, 131);
+    text-decoration: none;
+    font-weight: bold;
+}
+.link_two:hover{
+    color: rgb(53, 71, 99);
+}
+header h4{
+    width: 1100px;
+    margin: 0 auto 15px auto;
+}
+.back-btn, .link_three{
+    margin: auto;
+    color: rgb(77, 90, 207);
+    font-family: "Roboto";
+    font-weight: bold;
+    text-decoration: none;
+}
+.back-btn:hover, .link_three:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+/* nav bar styles [DO NOT TOUCH] */
+*{
+    box-sizing: border-box;
+}
+
+body {
+    --color1: #FFF ;
+    --color2: rgb(56 67 81); ;
+}
+
+.nav-bar {
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    background-color: var(--color2);
+    padding: 12px 30px;
+    margin: 0;
+    filter: drop-shadow(0px 0px 4px rgb(87, 87, 87));
+}
+.logo a{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.logo a img{
+    height: 32px;
+    filter: drop-shadow(0px 0px 5px rgb(97, 97, 97));
+    transition-duration: 0.5s;
+}
+.logo a img:hover{
+    filter: hue-rotate(120deg);
+}
+.logo a{
+    text-decoration: none;
+    color: var(--color1);
+    font-size: 24px;
+    font-family: "Fredoka";
+    text-align: center;
+    position: relative;
+}
+.close-menu i , .text-red{
+    color: rgb(255, 70, 70);
+}
+.menu {display: flex;}
+.menu li {padding-left: 25px;}
+.menu li a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--color1);
+    font-family: "Fredoka";
+    text-align: center;
+    transition: 0.15s ease-in-out;
+    position: relative;
+}
+.menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: rgb(105, 132, 167);
+}
+
+.menu li a:hover:after {width: 100%;}
+.open-menu , .close-menu {
+    position: absolute;
+    color: var(--color1);
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: none;
+}
+
+.open-menu {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.close-menu {
+    top: 20px;
+    right: 20px;
+}
+
+#check {display: none;}
+@media(max-width: 1000px){
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 45%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 100;
+        background-color: var(--color2);
+        transition: all 0.2s ease-in-out;
+    }
+    .menu li {margin-top: 40px;}
+    .menu li a {padding: 10px;}
+    .open-menu , .close-menu {display: block;}
+    #check:checked ~ .menu {right: 0;}
+}
+
+/* home page styles*/
+
+.headline{
+    font-family: "Fredoka";
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+.cta{
+    text-align: center;
+    margin-top: 15px;
+}
+.cta a{
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none;
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 8px;
+    background-color: rgb(63 86 115);
+    transition: 0.2s ease-in-out;
+}
+.cta a:hover{
+    background-color: rgb(46, 82, 129);
+    padding: 8px 32px;
+    cursor: pointer;
+}
+.about-section{
+    font-family: "Poppins";
+    background-color: rgb(238, 238, 238);
+    padding: 30px 0;
+}
+
+/* About Content Responsiveness */
+@media (max-width: 1400px){
+    .about-content{
+        width: 85%;
+        margin: auto;
+    }
+}
+@media (min-width: 1400px){
+    .about-content{
+        width: 50%;
+        margin: auto;
+    }
+    .why_us{
+        display: flex;
+        
+    }
+}
+/* about content padding for top and bottom to be default 0 */
+
+.about-content #first-about{
+    margin-top: 0;
+}
+
+.about-content #last-about{
+    margin-bottom: 0;
+}
+
+/* Login/Logout */
+.hint{
+    width: 1100px;
+    margin: auto;
+    color: rgb(207, 77, 77);
+    font-family: "Roboto";
+}
+.form-class{
+    width: 1100px;
+    margin: auto;
+    text-align: center;
+    font-family: "Poppins";
+}
+.form-class p{
+    margin: 0;
+}
+.input_field{
+    width: 1100px;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    padding: 9px 12px;
+    margin: 5px 0 10px 0;
+    background-color: #dddddd;
+    transition-duration: 0.3s;
+}
+.input_field:hover{
+    background-color: #c5c5c5;
+}
+.submit-btn{
+    width: 1100px;
+    border: none;
+    border-radius: 12px;
+    padding: 7px 12px;
+    margin-bottom: 10px;
+    background-color: rgb(63 86 115);
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    font-family: "Fredoka";
+    transition-duration: 0.3s;
+}
+.submit-btn:hover{
+    background-color: rgb(46, 82, 129);
+    filter: drop-shadow(0px 0px 5px rgb(158, 158, 158));
+    cursor: pointer;
+}
+
+/* Logout */
+.danger-btn{
+    font-family: "Fredoka";
+    font-size: 1em;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 7px 12px;
+    background-color: rgb(216, 60, 60);
+    transition-duration: 0.3s;
+}
+.danger-btn:hover{
+    background-color: rgb(184, 55, 55);
+    cursor: pointer;
+}
+.logout-options, .edit-options{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    align-items: center;
+}
+/* ReCaptcha */
+.g-recaptcha{
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+/* Sign Up Flash Messages */
+.success-message{
+    text-align: center;
+    color: rgb(103, 128, 93);
+    font-weight: bold;
+    font-family: "Roboto";
+    background-color: rgb(171, 212, 154);
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+}
+.message{
+    width: 1100px;
+    margin: auto;
+}
+.message p{
+    margin: 0;
+}
+.error-message{
+    text-align: center;
+    color: rgb(155, 120, 67);
+    font-weight: bold;
+    font-family: "Roboto";
+    background-color: rgb(255, 229, 190);
+    padding: 10px 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 10px;
+}
+/* Profiles */
+.user-links{
+    display: flex;
+    gap: 12px;
+}
+/* Marketplace */
+
+/* searchbar */
+.search-container{
+    width: 100%;
+}
+.search-box{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 8px;
+    background-color: transparent;
+    border: #989898 2px solid;
+    padding: 6px 12px;
+    outline: none;
+    font-size: 18px;
+    font-family: "Roboto";
+    font-weight: bold;
+    transition-duration: 0.5s;
+}
+.search-box:hover{
+    border-color: #4d4d4d;
+}
+.search-box .search-icon{
+    font-size: 18px;
+    color: var(--color2);
+}
+.search-box .search-icon button{
+    padding: 0;
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: rgb(83, 111, 151);
+    transition-duration: 0.2s;
+}
+.search-box .search-icon button:hover{
+    color: rgb(54, 75, 105);
+}
+.search-box .search-input{
+    width: 100%;
+}
+.search-box .search-input input{
+    font-size: 18px;
+    outline: none;
+    border: none;
+    background-color: unset;
+    color: black;
+    width: 100%;
+}
+.products-view, .checkout-products-view, .orders{
+    width: 1100px;
+    margin: 15px auto 25px auto;
+    align-items: center;
+    background-color: #e9e9e9;
+    padding: 5px;
+    border-radius: 10px;
+    gap: 10px;
+    font-family: "Poppins";
+    filter: drop-shadow(0px 4px 4px rgb(219, 219, 219));
+}
+.checkout-products-view{
+    width: 100% !important;
+    padding: 20px;
+    margin-bottom: 30px !important;
+    gap: 20px;
+}
+.products-view .item-remove a{
+    margin-right: 10px;
+    color: rgb(156, 39, 39);
+    transition-duration: 0.3s;
+}
+.products-view .item-remove a:hover{
+    margin-right: 20px;
+    font-size: 30px;
+    filter: drop-shadow(0px 0px 4px rgb(150, 150, 150));
+}
+.product-image-section, .checkout-product-image-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 10px;
+}
+.products-view div, .detail-product-view div{
+    margin: 15px 25px;
+}
+.retail-cost{
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    font-weight: 300;
+    font-size: .8em;
+    color: rgb(255, 0, 0);
+}
+.text-green{
+    color: green;
+}
+.header-btn{
+    display: block;
+    width: 1100px;
+    font-family: "Fredoka";
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 7px 14px;
+    margin: 15px auto;
+    background-color: rgb(46, 82, 129);
+    text-decoration: none;
+    transition-duration: 0.3s;
+}
+.header-btn:hover{
+    background-color: rgb(34, 61, 95);
+}
+/* Marketplace Detail View */
+.product-details-page{
+    grid-template-columns: 3fr 1.2fr;
+    width: 1100px;
+    margin: 0 auto 50px auto;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    background-color: #e9e9e9;
+    font-family: "Poppins";
+    filter: drop-shadow(0px 4px 4px rgb(219, 219, 219));
+}
+.detail-product-view{
+    gap: 15px;
+}
+
+.product-button-options, .action-class, .checkout-action{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.checkout-action a{
+    color: white;
+    background-color: orange;
+    margin-top: 10px;
+}
+.checkout-action .action-btn:hover{
+    background-color: rgb(231, 150, 0);
+}
+.product-button, .action-btn{
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 14px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Roboto";
+    transition-duration: 0.3s;
+}
+.product-edit{
+    display: flex;
+    width: 100%;
+    background-color: rgb(175, 175, 175);
+    text-decoration: none;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 5px;
+    font-family: "Roboto";
+    font-weight: bold;
+    transition-duration: 0.3s;
+}
+.product-edit:hover{
+    background-color: rgb(153, 153, 153);
+}
+.product-remove{
+    display: flex;
+    width: 100%;
+    background-color: rgb(165, 59, 59);
+    text-decoration: none;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    color: rgb(255, 255, 255);
+    margin-top: 5px;
+    font-family: "Roboto";
+    font-weight: bold;
+    transition-duration: 0.3s;
+}
+.product-remove:hover{
+    background-color: rgb(145, 50, 50);
+}
+.product-button:hover{
+    filter: drop-shadow(0px 0px 4px rgb(175, 175, 175));
+    cursor: pointer;
+}
+.filter-elements{
+    padding: 5px;
+}
+.filter-elements button{
+    padding: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+.filter-elements button:hover{
+    border: 2px rgb(109, 109, 109) dashed;
+}
+.comment-section{
+    width: 1100px;
+    margin: 0 auto 70px auto;
+}
+.rating{
+    margin: 8px 0;
+}
+.comment{
+    margin-bottom: 25px;
+}
+.comment-title{
+    margin: 4px 0;
+}
+/* Form Styles */
+.form_field{
+    margin-bottom: 6px;
+    text-align: center;
+    margin: auto;
+}
+.form-input{
+    margin-bottom: 5px;
+}
+.form-label{
+    margin-bottom: 3px;
+}
+.ta_field{
+    height: 70px;
+}
+.form-class input,.form-class textarea{
+    font-family: "Roboto";
+    font-weight: bold;
+}
+/* Cart Checkout */
+header table, .user-products table, .profile-detail-options table{
+    width: 1100px;
+    margin: auto;
+    font-family: "Roboto";
+    font-weight: bold;
+}
+.profile-detail-options table tr{
+    display: flex; gap: 2%;
+    justify-content: center;
+}
+.profile-detail-options table td{
+    text-align: center;
+    background-color: #e6e6e6;
+    filter: drop-shadow(0px 4px 4px rgb(219, 219, 219));
+}
+
+.cart-total table{
+    width: 1100px;
+    margin: auto;
+    font-size: 18px;
+    font-family: "Poppins";
+    background-color: #efeae6;
+    padding: 15px;
+    border-radius: 10px;
+}
+.action-class{
+    width: 1100px;
+    font-family: "Fredoka";
+    font-weight: bold;
+    background-color: rgb(255, 153, 0);
+    margin: 15px auto;
+    border-radius: 7px;
+    text-align: center;
+    transition-duration: 0.3s;
+}
+.sbs-btns{
+    width: 1100px;
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+.sbs-btn{
+    width: 50%;
+    background-color: rgb(247, 247, 247);
+    border: #989898 2px solid;
+    border-radius: 7px;
+    margin: 0 auto 10px auto;
+    padding: 8px 14px;
+    text-align: center;
+    color: #696969;
+    text-decoration: none;
+    font-family: "Roboto";
+    font-weight: bold;
+    transition-duration: 0.1s;
+}
+.profile-orders-class{
+    background-color: rgb(247, 247, 247);
+    border: #989898 2px solid;
+    transition-duration: 0.1s !important;
+}
+.profile-orders-class:hover, .sbs-btn:hover{
+    background-color: rgb(247, 247, 247) !important;
+    border: rgb(83, 111, 151) 2px solid;
+    filter: drop-shadow(0px 0px 2px rgb(83, 111, 151));
+}
+.profile-orders-btn{
+    color: #696969 !important;
+}
+.action-class:hover, .checkout-btn:hover{
+    background-color: rgb(204, 124, 3);
+    cursor: pointer;
+}
+.action-class a{
+    color: white;
+    text-decoration: none;
+}
+.checkout-btn{
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 8px 14px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Roboto";
+    font-size: 16px;
+    color: white;
+    background-color: orange;
+    transition-duration: 0.3s;
+}
+/* Checkout Page */
+.checkout{
+    width: 1100px;
+    margin: auto;
+    gap: 40px;
+}
+.checkout-products{
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+.checkout .checkout-total{
+    background-color: #efeae6;
+    border-radius: 12px;
+    font-family: "Poppins";
+    padding: 20px;
+    margin: 15px auto 25px auto;
+    filter: drop-shadow(0px 4px 4px rgb(219, 219, 219));
+}
+/* your orders */
+.purchase-date{
+    font-family: "Roboto";
+    padding: 10px;
+    background-color: rgb(224, 224, 224);
+    border-radius: 10px 10px 0 0;
+}
+.purchase-details{
+    grid-template-columns: 3.5fr 1.5fr;
+    padding: 10px;
+}
+/* Default Responsiveness */
+@media (max-width: 1200px){
+    .header-text, .content-center, .hint ,.form-class, .message, .products-view, .product-details-page, .comment-section, header h4, header table, .user-products table, .profile-detail-options table, .cart-total table, .action-class, .checkout, .sbs-btns, .orders{
+        width: 80%;
+    }
+    .input_field, .search_field, .form_field, .submit-btn, .header-btn{
+        width: 100%;
+    }
+}
+@media (min-width : 1200px){
+    .checkout{
+        display: grid;
+        grid-template-columns: 3fr 1.5fr;
+    }
+}
+/* Marketplace responsiveness */
+@media (min-width : 1000px){
+    .product-details-page, .purchase-details{
+        display: grid;
+    }
+    .additional-information{
+        margin: 0;
+    }
+}
+@media (min-width : 750px){
+    .detail-product-view, .checkout-products-view{
+        display: flex;
+    }
+    .products-view{
+        display: flex;
+    }
+}
+/* Marketplace Image */
+@media (max-width : 750px){
+    .product-image{
+        width: 220px;
+    }
+    .products-view .product-info a h2, .product-details-page .product-details h2{
+        font-size: 20px;
+    }
+    .user-about a h1, .content-center h1{
+        font-size: 25px;
+    }
+    header table td p, .checkout-product .link_two{
+        font-size: .9em;
+    }
+    .profile-detail-options table tr{
+        flex-direction: column;
+        gap: 20px;
+    }
+    .profile-detail-options table td{
+        width: 100%;
+    }
+    .nav-bar{
+        padding: 12px 15px;
+    }
+}
+@media (max-width : 400px){
+    .product-image{
+        width: 175px;
+    }
+}

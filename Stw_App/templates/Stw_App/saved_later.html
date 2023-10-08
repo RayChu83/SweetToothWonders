@@ -1,0 +1,66 @@
+{% extends 'Stw_App/base.html' %}
+{% load static %}
+{% block title %}<title>View Cart</title>{% endblock title %}
+{% block content %}
+    <main>
+        <header>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        <div class="success-message">
+                            {{message}}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <table>
+                <tr>
+                    <td width="50%">
+                        <p><a class="link_three" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></p>
+                    </td>
+                    <td style="text-align: end;">
+                        <p><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-plus"></i> Add Items</a></p>
+                    </td>
+                </tr>
+            </table>
+            <h4 class="hint text-green">{{saved_later.count}} saved 
+                {% if saved_later.count == 1%}
+                    item
+                {% else %}
+                    items
+                {% endif %}
+            </h4>
+        </header>
+        {% for product in saved_later %}
+            <div class="products-view">
+
+                <div class="product-image-section">
+                    <span class="item-remove">
+                        <h2><a href="{% url 'Stw_App:remove_saved_later' pk=product.id%}"><i class="fa-solid fa-xmark"></i></a></h2>
+                    </span>
+                    {% if product.item.candy_image %}
+                        <a href="{% url 'Stw_App:view_product' pk=product.item.id %}"><img class="product-image" width="175px" src="{{ product.item.candy_image.url }}" alt=""></a>
+                    {% else %} 
+                        <a href="{% url 'Stw_App:view_product' pk=product.item.id %}"><img class="product-image" width="175px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
+                    {% endif %}
+                </div>
+
+                <div class="product-info">
+                    <a class="link" href="{% url 'Stw_App:view_product' pk=product.item.id %}"><h2>{{product.item.candy_name}}</h2></a>
+                    <p><a class="link_two" href="{{product.item.brand_url}}" target="_blank">{{product.item.brand}}</a> •
+                        {% if product.item.in_stock%}
+                           <span class="text-green">In Stock</span>
+                        {% else %}
+                            <span class="text-red">Not In Stock</span>
+                        {% endif %}
+                    </p>
+                    <h4>Price: ${{product.item.cost}} {% if product.item.retail_cost > product.item.cost %}<span class="retail-cost">${{product.item.retail_cost}}</span>{% endif %}</h4>
+                </div>
+            </div>
+
+        {% endfor %}
+        {% if total_cost > 0 %}
+            <h3 class="hint text-green">Your total is: {{total_cost}}</h3>
+        {% endif %}
+    </main>
+{% endblock content %}
