@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["web-production-d8824.up.railway.app", "http://127.0.0.1:8000/"]
  
-CSRF_TRUSTED_ORIGINS=["web-production-d8824.up.railway.app"]
+CSRF_TRUSTED_ORIGINS=["https://web-production-d8824.up.railway.app/"]
 # Application definition
 
 INSTALLED_APPS = [
