@@ -70,7 +70,7 @@
                     </div>
 
                     <div class="product-info">
-                        <a class="link" href="{% url 'Stw_App:view_product' pk=product.id %}"><h2>{{product.candy_name}}</h2></a>
+                        <a class="link_four" href="{% url 'Stw_App:view_product' pk=product.id %}"><h2>{{product.candy_name}}</h2></a>
                         {% if product.candy_rating %}
                             {% include 'Stw_App/product_ratings.html' %}
                         {% endif %}

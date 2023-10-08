@@ -55,10 +55,6 @@ main{
     text-decoration: none;
     font-weight: bold;
 }
-.link:hover{
-    text-decoration:underline;
-    text-decoration-thickness: 2px;
-}
 .link_two{
     color: rgb(75, 97, 131);
     text-decoration: none;
@@ -78,9 +74,13 @@ header h4{
     font-weight: bold;
     text-decoration: none;
 }
-.back-btn:hover, .link_three:hover{
+.back-btn:hover,.link:hover, .link_three:hover, .link_four:hover{
     text-decoration: underline;
     text-decoration-thickness: 2px;
+}
+.link_four{
+    color: black;
+    text-decoration: none;
 }
 /* nav bar styles [DO NOT TOUCH] */
 *{

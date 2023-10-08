@@ -52,7 +52,7 @@
                             {% endif %}
                         </div>
                         <div class="product-details" style="width:85%;">
-                            <a href="{% url 'Stw_App:view_product' pk=order.item.id %}"><h3 style="margin: 0;">{{order.item.candy_name}}</h3></a>
+                            <a class="link_four" href="{% url 'Stw_App:view_product' pk=order.item.id %}"><h3 style="margin: 0;">{{order.item.candy_name}}</h3></a>
                             <p><a class="link_two" href="{{order.item.brand_url}}" target="_blank">{{order.item.brand}}</a> •
                                 {% if order.item.in_stock%}
                                     <span class="text-green">In Stock</span>
