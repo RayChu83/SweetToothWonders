@@ -126,7 +126,7 @@
                             <p>Become first to add a comment.</p>
                         </div>
                     {% elif not comments and query %}
-                        {% include 'Stw_App/no_results.html' %}
+                        {% include 'Stw_App/no_search_results.html' %}
                     {% else %}
                         <div class="comment-section" style="font-family: 'Poppins';">
                             <p>{{comments.count}} 
