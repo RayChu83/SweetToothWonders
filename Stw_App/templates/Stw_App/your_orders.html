@@ -24,7 +24,7 @@
             </tr>
         </table>
         <h4 class="hint text-green">{{ordered_products.count}}
-            {% if cart.count == 1%}
+            {% if ordered_products.count == 1%}
                 order made in total
             {% else %}
                 orders made in total
@@ -46,13 +46,13 @@
                     
                         <div class="product-image-section">
                             {% if order.item.candy_image %}
-                                <img class="product-image" width="225px" src="{{ order.item.candy_image.url }}" alt="">
+                                <a href="{% url 'Stw_App:view_product' pk=order.item.id %}"><img class="product-image" width="225px" src="{{ order.item.candy_image.url }}" alt=""></a>
                             {% else %}
-                                <img class="product-image"  width="225px" src="{% static 'Stw_App/images/download.jpg' %}" alt="">
+                                <a href="{% url 'Stw_App:view_product' pk=order.item.id %}"><img class="product-image"  width="225px" src="{% static 'Stw_App/images/download.jpg' %}" alt=""></a>
                             {% endif %}
                         </div>
                         <div class="product-details" style="width:85%;">
-                            <h3 style="margin:0">{{order.item.candy_name}}</h3>
+                            <a href="{% url 'Stw_App:view_product' pk=order.item.id %}"><h3 style="margin: 0;">{{order.item.candy_name}}</h3></a>
                             <p><a class="link_two" href="{{order.item.brand_url}}" target="_blank">{{order.item.brand}}</a> •
                                 {% if order.item.in_stock%}
                                     <span class="text-green">In Stock</span>
