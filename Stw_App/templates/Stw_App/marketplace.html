@@ -6,13 +6,7 @@
 
         <header>
             {% if messages %}
-                {% for message in messages %}
-                    <div class="message">
-                        <div class="success-message">
-                            {{message}}
-                        </div>
-                    </div>
-                {% endfor %}
+                {% include 'Stw_App/flash_messages.html' %}
             {% endif %}
             <div class="form-class">
                 <form method="get">
@@ -29,6 +23,14 @@
                                     placeholder="Search Products..." autocomplete="off"
                                 >
                             </div>
+                        </div>
+                        <div class="search-predictions">
+                            {% for brand in brands %}
+                            <div class="search-prediction">
+                                <a href="?search={{brand}}" class="text-black"><i class="fa-solid fa-square-arrow-up-right"></i> </a>
+                                <a class="link_four prediction" href="?search={{brand}}">{{brand}}</a>
+                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </form>
@@ -88,5 +90,32 @@
             {% else %}
                 {% include 'Stw_App/no_search_results.html' %}
         {% endif %}
+        <div class="pagination">
+            {% if candy.has_previous %}
+                <a href="?{% if query %}search={{query}}{% endif %}&page={{candy.previous_page_number}}"><i class="fa-solid fa-angle-left"></i></a>
+            {% endif %}
+            
+            <div class="current_page">
+                <a class="link_four" href="">{{candy.number}}</a>
+            </div>
+
+            {% if candy.has_next %}
+                <a href="?{% if query %}search={{query}}{% endif %}&page={{candy.next_page_number}}"><i class="fa-solid fa-angle-right"></i></a>
+            {% endif %}
+        </div>
     </main>
+    <script>
+        const search = document.querySelector(".search-container");
+        const searchPredictions = document.querySelectorAll(".search-predictions");
+        search.addEventListener("mouseover", function(){
+            for (let i = 0; i < searchPredictions.length; i++) {
+                searchPredictions[i].style.display = "block";
+                }
+        });
+        search.addEventListener("mouseout", function(){
+            for (let i = 0; i < searchPredictions.length; i++) {
+                searchPredictions[i].style.display = "none";
+                }
+        });
+    </script>
 {% endblock content %}

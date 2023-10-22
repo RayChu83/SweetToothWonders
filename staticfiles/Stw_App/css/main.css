@@ -8,6 +8,7 @@ body{
 }
 main{
     margin: 90px auto;
+    min-height: 80vh;
 }
 
 .header-text{
@@ -50,19 +51,28 @@ main{
 .stars:hover{
     color: rgb(199, 170, 4);
 }
+.footer-link{
+    color: white;
+    text-decoration: none;
+}
+.footer-link h2{
+    margin: 10px auto;
+}
+.footer-link:hover{
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
 .link{
     color: rgb(83, 111, 151);
     text-decoration: none;
     font-weight: bold;
-}
-.link:hover{
-    text-decoration:underline;
-    text-decoration-thickness: 2px;
+    display: inline-block;
 }
 .link_two{
     color: rgb(75, 97, 131);
     text-decoration: none;
     font-weight: bold;
+    display: inline-block;
 }
 .link_two:hover{
     color: rgb(53, 71, 99);
@@ -77,10 +87,16 @@ header h4{
     font-family: "Roboto";
     font-weight: bold;
     text-decoration: none;
+    display: inline-block;
 }
-.back-btn:hover, .link_three:hover{
+.back-btn:hover,.link:hover, .link_three:hover, .link_four:hover{
     text-decoration: underline;
     text-decoration-thickness: 2px;
+}
+.link_four, .text-black{
+    color: black;
+    text-decoration: none;
+    display: inline-block;
 }
 /* nav bar styles [DO NOT TOUCH] */
 *{
@@ -106,20 +122,19 @@ body {
     margin: 0;
     filter: drop-shadow(0px 0px 4px rgb(87, 87, 87));
 }
-.logo a{
+.logo a , #brand-footer h2{
     display: flex;
     align-items: center;
     gap: 6px;
 }
-.logo a img{
+.logo a img, #brand-footer img{
     height: 32px;
     filter: drop-shadow(0px 0px 5px rgb(97, 97, 97));
-    transition-duration: 0.5s;
 }
-.logo a img:hover{
+.logo a img:hover, #brand-footer img:hover{
     filter: hue-rotate(120deg);
 }
-.logo a{
+.logo a, #brand-footer h2{
     text-decoration: none;
     color: var(--color1);
     font-size: 24px;
@@ -177,7 +192,7 @@ body {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 45%;
+        width: 55%;
         height: 100vh;
         position: fixed;
         top: 0;
@@ -191,7 +206,26 @@ body {
     .open-menu , .close-menu {display: block;}
     #check:checked ~ .menu {right: 0;}
 }
-
+/* Footer Styles */
+footer{
+    background-color: var(--color2);
+    padding: 15px;
+    color: white;
+    filter: drop-shadow(0px 0px 4px rgb(87, 87, 87));
+}
+#brand-footer h2{
+    justify-content: center;
+}
+.main-footer-content{
+    font-family: "Poppins";
+    text-align: center;
+    gap: 100px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+#copyright{
+    font-family: "Roboto";
+}
 /* home page styles*/
 
 .headline{
@@ -332,34 +366,37 @@ body {
     margin: 10px 0;
 }
 /* Sign Up Flash Messages */
-.success-message{
-    text-align: center;
-    color: rgb(103, 128, 93);
-    font-weight: bold;
-    font-family: "Roboto";
-    background-color: rgb(171, 212, 154);
-    padding: 10px 12px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 10px;
-}
 .message{
     width: 1100px;
     margin: auto;
-}
-.message p{
-    margin: 0;
-}
-.error-message{
     text-align: center;
-    color: rgb(155, 120, 67);
+    color: rgb(143, 143, 143);
     font-weight: bold;
     font-family: "Roboto";
-    background-color: rgb(255, 229, 190);
-    padding: 10px 12px;
+    background-color: #e2e2e2;
+    padding: 5px 12px;
     margin-bottom: 15px;
     border: none;
     border-radius: 10px;
+}
+.message .message-container{
+    display: flex;
+    justify-content: center;
+    gap: 2.5%;
+    margin: 5px;
+    align-items: center;
+}
+.message p{
+    margin: 0;
+    min-height: 21px;
+}
+.hide-message{
+    color: red;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
 }
 /* Profiles */
 .user-links{
@@ -371,12 +408,13 @@ body {
 /* searchbar */
 .search-container{
     width: 100%;
+    filter: drop-shadow(0px 4px 4px rgb(219, 219, 219));
 }
 .search-box{
     display: flex;
     align-items: center;
     gap: 10px;
-    border-radius: 8px;
+    border-radius: 8px 8px 0 0;
     background-color: transparent;
     border: #989898 2px solid;
     padding: 6px 12px;
@@ -416,6 +454,32 @@ body {
     color: black;
     width: 100%;
 }
+.search-prediction{
+    padding: 0 12px;
+    display: flex;
+    transition-duration: 0.2s;
+}
+.search-prediction:hover{
+    background-color: #c9c9c9;
+}
+.search-prediction .prediction{
+    width: 100%;
+}
+.search-predictions{
+    display: none;
+    border-radius: 0 0 8px 8px;
+    background-color: #e2e2e2;
+    max-height: 100px;
+    overflow: auto;
+}
+.search-predictions a{
+    padding: 8px 6px;
+    display: block;
+    font-size: 1em;
+    font-family: "Roboto";
+    font-weight: bold;
+    text-align: start !important; 
+}
 .products-view, .checkout-products-view, .orders{
     width: 1100px;
     margin: 15px auto 25px auto;
@@ -435,7 +499,7 @@ body {
 }
 .products-view .item-remove a{
     margin-right: 10px;
-    color: rgb(156, 39, 39);
+    color: red;
     transition-duration: 0.3s;
 }
 .products-view .item-remove a:hover{
@@ -480,6 +544,22 @@ body {
 }
 .header-btn:hover{
     background-color: rgb(34, 61, 95);
+}
+.pagination{
+    display: flex;
+    justify-content: center;
+    font-family: "Fredoka";
+    font-size: 1.1em;
+    gap: 6px;
+}
+.pagination > a{
+    color: black;
+    padding: 0 5px;
+    transition-duration: 0.2s;
+}
+.pagination > a:hover{
+    background-color: #e2e2e2;
+    border-radius: 4px;
 }
 /* Marketplace Detail View */
 .product-details-page{
@@ -578,11 +658,32 @@ body {
     width: 1100px;
     margin: 0 auto 70px auto;
 }
+
 .rating{
     margin: 8px 0;
 }
+.all-comments{
+    overflow: auto;
+    max-height: 300px;
+    padding: 15px 25px;
+    border-radius: 5px;
+    background-color: #e9e9e9;
+    filter: drop-shadow(0px 4px 4px rgb(219, 219, 219));
+}
 .comment{
     margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.remove-comment a{
+    font-size: 1.5em;
+}
+.remove-comment a:hover{
+    color: rgb(184, 0, 0) !important;
+}
+.comment-content{
+    width: 100%;
 }
 .comment-title{
     margin: 4px 0;
@@ -761,6 +862,11 @@ header table, .user-products table, .profile-detail-options table{
         display: flex;
     }
 }
+@media (min-width : 500px){
+    .main-footer-content{
+        display: flex;
+    }
+}
 /* Marketplace Image */
 @media (max-width : 750px){
     .product-image{
@@ -772,8 +878,8 @@ header table, .user-products table, .profile-detail-options table{
     .user-about a h1, .content-center h1{
         font-size: 25px;
     }
-    header table td p, .checkout-product .link_two{
-        font-size: .9em;
+    .redirect-options table td p, .checkout-product .link_two, header td p{
+        font-size: .85em;
     }
     .profile-detail-options table tr{
         flex-direction: column;

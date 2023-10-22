@@ -4,13 +4,7 @@
     <main>
         <header>
             {% if messages %}
-                {% for message in messages %}
-                    <div class="message">
-                        <div class="error-message">
-                            <p><i class="fa-solid fa-triangle-exclamation"></i> {{message}} </p>
-                        </div>
-                    </div>
-                {% endfor %}
+                {% include 'Stw_App/flash_messages.html' %}
             {% endif %}
             <h4><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></h4>
         </header>

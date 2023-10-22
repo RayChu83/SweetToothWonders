@@ -1,0 +1,22 @@
+{% for message in messages %}
+    <div class="message">
+        <div class="message-container">
+            <div>
+                <button class="hide-message"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div>
+                <p>{{message}}</p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<script>
+    const hideMessageButton = document.querySelector(".hide-message");
+    const message = document.querySelectorAll(".message")
+    hideMessageButton.addEventListener("click", function(){
+        for (let i = 0; i < message.length; i++) {
+            message[i].style.display = "none";
+            }
+    });
+</script>

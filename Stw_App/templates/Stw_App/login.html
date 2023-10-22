@@ -6,15 +6,9 @@
     <header>
         <h2 class="header-text">Login with Sweet Tooth Wonders</h2>
     </header>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="message">
-                <div class="error-message">
-                    <p><i class="fa-solid fa-triangle-exclamation"></i> {{message}} </p>
-                </div>
-            </div>
-        {% endfor %}
-    {% endif %}
+        {% if messages %}
+            {% include 'Stw_App/flash_messages.html' %}
+        {% endif %}
     <h5 class="hint">All fields required*</h5>
     <div class="form-class">
         <form action="" method="POST">

@@ -4,13 +4,7 @@
 {% block content %}
     <main>
         {% if messages %}
-            {% for message in messages %}
-                <div class="message">
-                    <div class="success-message">
-                        {{message}}
-                    </div>
-                </div>
-            {% endfor %}
+            {% include 'Stw_App/flash_messages.html' %}
         {% endif %}
         <header>
             <table class="cart-header">

@@ -7,6 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import get_user_model
 from django.conf import settings
+from django.core.paginator import Paginator
 from django.urls import reverse_lazy, reverse
 from django.db.models import Q
 
@@ -33,14 +34,31 @@ class Marketplace(TemplateView,ProductRatingMixin):
     # takes the template and has variables saved to access some model objects, and a condition which manipulates the model object being returned in the context
     
     template_name = "Stw_App/marketplace.html"
-
+ 
     def get(self,request):
-        candy = self.get_products_rating(request, Candy.objects.all().order_by("?"))
+
+        # 41-45, gets all Candy objects in the model, stores all the Candy brands in a array uniquely
+        all_candies = Candy.objects.all()
+        brands = []
+        for candy in all_candies:
+            brands.append(candy.brand)
+
         query = self.request.GET.get("search")
         if query:
             candy = Candy.objects.filter(Q(brand__icontains=query) | Q(candy_name__icontains=query) | Q(candy_description__icontains=query))
-        context = {"candy": candy,
-                   "query" : query}
+        else:
+            candy = self.get_products_rating(request, Candy.objects.all().order_by("-id"))
+        # Pagination Process with built in method
+        candy = Paginator(candy, 5)
+        page_number = request.GET.get("page", 1)
+        try:
+            page = candy.page(page_number)
+        except:
+            page = candy.page(1)
+            messages.error(request, "The page you tried accessing does not exist! Please try again later.")
+        context = {"candy": page,
+                   "query" : query,
+                   "brands" : set(brands)}
         return render(request, self.template_name, context)
     
     
@@ -113,8 +131,8 @@ class ViewProduct(TemplateView, ProductRatingMixin):
             comment.user = request.user
             comment.candy_product = product
             comment.save()
-            messages.success(request, "Comment Created Successfully")
-        return HttpResponseRedirect(self.request.path_info)
+            messages.success(request, "Comment added successfully")
+        return HttpResponseRedirect(f"{self.request.path_info}#product-comments")
     
 class RemoveProduct(LoginRequiredMixin, View):
     # GET - get the product we want to remove, before removing anything, check to make sure once again the request.user meaning the user of the request and the product seller match and if
@@ -128,7 +146,7 @@ class RemoveProduct(LoginRequiredMixin, View):
         if request.user != product.seller:
             return redirect("Stw_App:marketplace")
         product.delete()
-        messages.success(request, "Product was successfully removed")
+        messages.success(request, "Product was removed successfully")
         return redirect("Stw_App:marketplace")
 
 
@@ -145,7 +163,7 @@ class RemoveComment(LoginRequiredMixin, View):
             messages.error(request, "Error 404 while removing comment")
             return HttpResponseRedirect(self.request.path_info)
         comment.delete()
-        messages.success(request, "Comment was successfully removed")
+        messages.success(request, "Comment was removed successfully")
         return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 

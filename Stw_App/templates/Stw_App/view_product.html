@@ -5,13 +5,7 @@
     <main>
         <header>
             {% if messages %}
-                {% for message in messages %}
-                    <div class="message">
-                        <div class="success-message">
-                            {{message}}
-                        </div>
-                    </div>
-                {% endfor %}
+                {% include 'Stw_App/flash_messages.html' %}
             {% endif %}
             <h4><a class="back-btn" href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-circle-chevron-left"></i> Back To Market</a></h4>
         </header>
@@ -83,6 +77,7 @@
             {% if request.user.is_authenticated %}
                 <div class="comments-form">
                     <div class="form-class">
+                        <h2>Write a review . . .</h2>
                         <form method="POST">
                             {% csrf_token %}
                             {% for field in form%} 
@@ -129,39 +124,39 @@
                         {% include 'Stw_App/no_search_results.html' %}
                     {% else %}
                         <div class="comment-section" style="font-family: 'Poppins';">
-                            <p>{{comments.count}} 
-                                {% if comments.count > 1 %}
-                                    comments
-                                {% else %}
-                                    comment
-                                {% endif %}
-                                found</p>
-                            {% for comment in comments%}
-                            <div class="comment">
-                                <h2 class="comment-title">{{comment.title}}</h2>
-                                {% if request.user == comment.user %}
-                                    <a class="text-red" href="{% url 'Stw_App:remove_comment' pk=comment.id %}">Remove</a>
-                                {% endif %}
-                                <p class="rating stars"> 
-                                    {% if comment.rating == 1 %}
-                                        <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-                                    {% elif comment.rating == 2 %}
-                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-                                    {% elif comment.rating == 3 %}
-                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
-                                    {% elif comment.rating == 4 %}
-                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
-                                    {% else %}
-                                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <p>Comments [<strong>{{comments.count}}</strong>]</p>
+                            <div class="all-comments">
+                                {% for comment in comments%}
+                                <div class="comment">
+                                    {% if request.user == comment.user %}
+                                        <div class="remove-comment">
+                                            <a class="text-red" href="{% url 'Stw_App:remove_comment' pk=comment.id %}"><i class="fa-solid fa-trash"></i> </a>
+                                        </div>
                                     {% endif %}
-                                </p>
-                                
-                                <a href="{% url 'Stw_App:profile_page' pk=comment.user.id %}" class="link">@{{comment.user}}</a>
-                                <small>{{comment.post_time|timesince}} ago</small>
-                                <p>{{comment.comment}}</p>
-                                <hr>
-                            </div>
+                                    <div class="comment-content">
+                                        <h2 class="comment-title">{{comment.title}}</h2>
+                                        <p class="rating stars"> 
+                                            {% if comment.rating == 1 %}
+                                                <i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                            {% elif comment.rating == 2 %}
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                            {% elif comment.rating == 3 %}
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i><i class="fa-regular fa-star"></i>
+                                            {% elif comment.rating == 4 %}
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                            {% endif %}
+                                        </p>
+                                        
+                                        <a href="{% url 'Stw_App:profile_page' pk=comment.user.id %}" class="link">@{{comment.user}}</a>
+                                        <small>{{comment.post_time|timesince}} ago</small>
+                                        <p>{{comment.comment}}</p>
+                                        <hr>
+                                    </div>
+                                </div>
                             {% endfor %}
+                            </div>
                         </div>
                     {% endif %}
             </section>
