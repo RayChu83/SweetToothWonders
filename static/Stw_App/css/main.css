@@ -54,13 +54,10 @@ main{
 .footer-link{
     color: white;
     text-decoration: none;
+    display: inline-block;
 }
 .footer-link h2{
     margin: 10px auto;
-}
-.footer-link:hover{
-    text-decoration: underline;
-    text-decoration-thickness: 2px;
 }
 .link{
     color: rgb(83, 111, 151);
@@ -212,6 +209,9 @@ footer{
     padding: 15px;
     color: white;
     filter: drop-shadow(0px 0px 4px rgb(87, 87, 87));
+}
+#brand-footer{
+    text-align: center;
 }
 #brand-footer h2{
     justify-content: center;
@@ -551,15 +551,30 @@ footer{
     font-family: "Fredoka";
     font-size: 1.1em;
     gap: 6px;
+    align-items: center;
 }
 .pagination > a{
     color: black;
-    padding: 0 5px;
+    padding: 2px 5px;
     transition-duration: 0.2s;
 }
 .pagination > a:hover{
     background-color: #e2e2e2;
     border-radius: 4px;
+}
+#page-input{
+    width: 40px;
+    border: none;
+    border-radius: 6px;
+    background-color: #e2e2e2;
+    font-size: .9em;
+    font-family: "Fredoka";
+    text-align: center;
+    padding: 5px;
+    transition-duration: 0.2s;
+}
+#page-input:hover{
+    background-color: #d4d4d4;
 }
 /* Marketplace Detail View */
 .product-details-page{

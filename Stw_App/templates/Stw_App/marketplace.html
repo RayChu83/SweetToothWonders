@@ -96,7 +96,9 @@
             {% endif %}
             
             <div class="current_page">
-                <a class="link_four" href="">{{candy.number}}</a>
+                <form method="get">
+                    <input id="page-input" name="page" type="text" value="{{candy.number}}">
+                </form>
             </div>
 
             {% if candy.has_next %}

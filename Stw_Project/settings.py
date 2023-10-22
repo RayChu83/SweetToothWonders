@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = str(os.environ.get("SECRET_KEY"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["sweettoothwonders.com", "127.0.0.1"]
  
@@ -85,11 +85,16 @@ WSGI_APPLICATION = 'Stw_Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("NAME"),
-        'USER': os.environ.get("USER"),
-        'PASSWORD': os.environ.get("PASSWORD"),
-        'HOST': os.environ.get("HOST"),
-        'PORT': os.environ.get("PORT"),
+        # 'NAME': os.environ.get("NAME"),
+        # 'USER': os.environ.get("USER"),
+        # 'PASSWORD': os.environ.get("PASSWORD"),
+        # 'HOST': os.environ.get("HOST"),
+        # 'PORT': os.environ.get("PORT"),
+        'NAME': "railway",
+        'USER': "postgres",
+        'PASSWORD': "ea6AC250DN8NaOKrRjpD",
+        'HOST': "containers-us-west-140.railway.app",
+        'PORT': "6125",
     }
 }
 
@@ -136,14 +141,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = "/media/"
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, "mediafiles")
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static")
 ]
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
