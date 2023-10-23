@@ -14,19 +14,16 @@
             <a class="footer-link" href="{% url 'Stw_App:cart' %}">Your Cart</a><br>
             <a class="footer-link" href="{% url 'Stw_App:saved_later' %}">Saved Later</a><br>
         </div>
-        {% if request.user.is_authenticated %}
-            <div id="profile">
-                <h3>Profile</h3>
-                <a class="footer-link" href="{% url 'Stw_App:user_profile' %}">View Profile</a><br>
+        <div id="profile">
+            <h3>Profile</h3>
+            <a class="footer-link" href="{% url 'Stw_App:user_profile' %}">View Profile</a><br>
+            {% if request.user.is_authenticated %}
                 <a class="footer-link" href="{% url 'Stw_App:profile_feedback' pk=request.user.id %}">View Activity</a><br>
                 <a class="footer-link" href="{% url 'Stw_App:profile_products' pk=request.user.id %}">View Products</a><br>
-            </div>
-        {% endif %}
+            {% endif %}
+        </div>
     </div>
     <div id="copyright">
         <small>&copy; 2023 SweetToothWonders Ecommerce platform. All rights reserved</small>
-        <!-- <div class="disclaimer">
-            <p><i class="fa-solid fa-triangle-exclamation"></i> This is only a project, you will not be charged on yourr account</p>
-        </div> -->
     </div>
 </footer>
