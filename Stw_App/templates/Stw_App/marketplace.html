@@ -92,17 +92,18 @@
         {% endif %}
         <div class="pagination">
             {% if candy.has_previous %}
-                <a href="?{% if query %}search={{query}}{% endif %}&page={{candy.previous_page_number}}"><i class="fa-solid fa-angle-left"></i></a>
+                <a href="?{% if query %}search={{query}}&{% endif %}page={{candy.previous_page_number}}"><i class="fa-solid fa-angle-left"></i></a>
             {% endif %}
             
             <div class="current_page">
-                <form method="get">
+                <form action="?search={{query}}&page={{page_number}}" method="get">
+                    <input type="hidden" name="search" value="{{ query }}">
                     <input id="page-input" name="page" type="text" value="{{candy.number}}">
                 </form>
             </div>
 
             {% if candy.has_next %}
-                <a href="?{% if query %}search={{query}}{% endif %}&page={{candy.next_page_number}}"><i class="fa-solid fa-angle-right"></i></a>
+                <a href="?{% if query %}search={{query}}&{% endif %}page={{candy.next_page_number}}"><i class="fa-solid fa-angle-right"></i></a>
             {% endif %}
         </div>
     </main>

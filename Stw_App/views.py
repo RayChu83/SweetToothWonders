@@ -55,10 +55,12 @@ class Marketplace(TemplateView,ProductRatingMixin):
             page = candy.page(page_number)
         except:
             page = candy.page(1)
-            messages.error(request, "The page you tried accessing does not exist! Please try again later.")
+            messages.error(request, "The page you tried accessing does not exist!")
         context = {"candy": page,
+                   "page_number" : page_number,
                    "query" : query,
                    "brands" : set(brands)}
+        
         return render(request, self.template_name, context)
     
     
