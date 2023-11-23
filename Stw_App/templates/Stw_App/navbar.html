@@ -1,27 +1,61 @@
 {% load static %}
-<body> 
-    <header>
-        <nav>
-            <ul class='nav-bar'>
-                <li class='logo'>
-                    <a href="{% url 'Stw_App:home' %}"><img src="{% static 'Stw_App/images/Sweet_Tooth_Wonders3.png' %}" alt="">STWonders</a>
-                </li>
-                <input type='checkbox' id='check' />
-                <span class="menu"> 
-                    {% if request.user.is_authenticated %}
-                        <li><a href="{% url 'Stw_App:user_profile' %}"><i class="fa-solid fa-user"></i> Profile</a></li>
-                        <li><a href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-store"></i> Martketplace</a></li>
-                        <li><a href="{% url 'Stw_App:cart' %}"><i class="fa-solid fa-cart-shopping"></i> See Cart</a></li>
-                        <li><a class="logout-btn" href="{% url 'Stw_App:logout' %}"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
-                    {% else %}
-                        <li><a href="{% url 'Stw_App:marketplace' %}"><i class="fa-solid fa-store"></i> Martketplace</a></li>
-                        <li><a href="{% url 'Stw_App:signup' %}"><i class="fa-solid fa-user-plus"></i> Sign up</a></li>
-                        <li><a href="{% url 'Stw_App:login' %}"><i class="fa-solid fa-right-from-bracket"></i> Login</a></li>
-                    {% endif %}
-                    <label for="check" class="close-menu"><i class="fas fa-times"></i></label>
-                </span>
-                <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
-            </ul>
-        </nav>
-    </header>
+<body>
+  <header>
+    <nav>
+      <ul class="nav-bar">
+        <li class="logo">
+          <a href="{% url 'Stw_App:home' %}"
+            ><img
+              src="{% static 'Stw_App/images/Sweet_Tooth_Wonders3.png' %}"
+              alt=""
+          /></a>
+        </li>
+        <input type="checkbox" id="check" />
+        <span class="menu">
+          {% if request.user.is_authenticated %}
+          <li>
+            <a href="{% url 'Stw_App:user_profile' %}"
+              ><i class="fa-solid fa-user"></i> Profile</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'Stw_App:marketplace' %}"
+              ><i class="fa-solid fa-store"></i> Martketplace</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'Stw_App:cart' %}"
+              ><i class="fa-solid fa-cart-shopping"></i> See Cart</a
+            >
+          </li>
+          <li>
+            <a class="logout-btn" href="{% url 'Stw_App:logout' %}"
+              ><i class="fa-solid fa-right-from-bracket"></i> Logout</a
+            >
+          </li>
+          {% else %}
+          <li>
+            <a href="{% url 'Stw_App:marketplace' %}"
+              ><i class="fa-solid fa-store"></i> Martketplace</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'Stw_App:signup' %}"
+              ><i class="fa-solid fa-user-plus"></i> Sign up</a
+            >
+          </li>
+          <li>
+            <a href="{% url 'Stw_App:login' %}"
+              ><i class="fa-solid fa-right-from-bracket"></i> Login</a
+            >
+          </li>
+          {% endif %}
+          <label for="check" class="close-menu"
+            ><i class="fas fa-times"></i
+          ></label>
+        </span>
+        <label for="check" class="open-menu"><i class="fas fa-bars"></i></label>
+      </ul>
+    </nav>
+  </header>
 </body>

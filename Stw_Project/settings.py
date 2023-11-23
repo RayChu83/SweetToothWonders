@@ -85,11 +85,16 @@ WSGI_APPLICATION = 'Stw_Project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get("NAME"),
-        'USER': os.environ.get("USER"),
-        'PASSWORD': os.environ.get("PASSWORD"),
-        'HOST': os.environ.get("HOST"),
-        'PORT': os.environ.get("PORT"),
+        # 'NAME': os.environ.get("NAME"),
+        # 'USER': os.environ.get("USER"),
+        # 'PASSWORD': os.environ.get("PASSWORD"),
+        # 'HOST': os.environ.get("HOST"),
+        # 'PORT': os.environ.get("PORT"),
+        "NAME" : "railway",
+        "USER" : "postgres",
+        "PASSWORD" : "ea6AC250DN8NaOKrRjpD",
+        "HOST" : "containers-us-west-140.railway.app",
+        "PORT" : "6125",
     }
 }
 

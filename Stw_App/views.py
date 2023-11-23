@@ -114,7 +114,11 @@ class ViewProduct(TemplateView, ProductRatingMixin):
     form = CandyCommentForm()
 
     def get(self,request, pk):
-        product = self.get_products_rating(request, get_object_or_404(Candy, id=pk))
+        try:
+            product = self.get_products_rating(request, get_object_or_404(Candy, id=pk))
+        except:
+            messages.error(request, "Product Not Avaliable, Sorry!")
+            return redirect("Stw_App:marketplace")
         query = self.request.GET.get("search")
         comments = CandyComment.objects.filter(candy_product=product).filter(Q(title__icontains=query) | Q(comment__icontains=query)).order_by("-id") if query else CandyComment.objects.filter(candy_product=product).order_by("-id")
         context = {

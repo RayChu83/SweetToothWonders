@@ -107,18 +107,4 @@
             {% endif %}
         </div>
     </main>
-    <script>
-        const search = document.querySelector(".search-container");
-        const searchPredictions = document.querySelectorAll(".search-predictions");
-        search.addEventListener("mouseover", function(){
-            for (let i = 0; i < searchPredictions.length; i++) {
-                searchPredictions[i].style.display = "block";
-                }
-        });
-        search.addEventListener("mouseout", function(){
-            for (let i = 0; i < searchPredictions.length; i++) {
-                searchPredictions[i].style.display = "none";
-                }
-        });
-    </script>
 {% endblock content %}

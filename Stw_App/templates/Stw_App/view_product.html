@@ -117,15 +117,14 @@
             </div>
             <section id="product-comments">
                     {% if not comments and not query %}
-                        <div class="comment-section" style="font-family: 'Poppins';">
+                        <div class="comment-section" style="font-family: 'DM Sans';">
                             <p>Become first to add a comment.</p>
                         </div>
                     {% elif not comments and query %}
                         {% include 'Stw_App/no_search_results.html' %}
                     {% else %}
-                        <div class="comment-section" style="font-family: 'Poppins';">
+                        <div class="comment-section" style="font-family: 'DM Sans';">
                             <p>Comments [<strong>{{comments.count}}</strong>]</p>
-                            <div class="all-comments">
                                 {% for comment in comments%}
                                 <div class="comment">
                                     {% if request.user == comment.user %}
@@ -156,7 +155,6 @@
                                     </div>
                                 </div>
                             {% endfor %}
-                            </div>
                         </div>
                     {% endif %}
             </section>

@@ -28,7 +28,7 @@ urlpatterns = [
     
     # Authentication login/logout, signup/signout
     path("user", views.User.as_view(), name="user_profile"),
-    path("user/Orders", views.YourOrders.as_view(), name="your_orders"),
+    path("user/orders", views.YourOrders.as_view(), name="your_orders"),
     path("user/login", views.UserLogin.as_view(), name="login"),
     path("user/logout", views.UserLogout.as_view(), name="logout"),
     path("user/signUp", views.UserSignUp.as_view(), name="signup"),

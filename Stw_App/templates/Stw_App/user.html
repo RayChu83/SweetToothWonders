@@ -42,7 +42,7 @@
         <div class="user-products">
             <table style="margin-top: 15px;">
                 <tr>
-                    <td width="50%"><p style="margin: 0 ;font-weight: bold;font-family: Roboto;" class="text-green">Recently Added Products. . . </p></td>
+                    <td width="50%"><p style="margin: 0 ;font-weight: bold;font-family: DM Sans;" class="text-green">Recently Added Products. . . </p></td>
                     {% if all_products.count %}
                     <td style="text-align: end;"><p><a class="link_three" href="{% url 'Stw_App:profile_products' pk=user.id %}">See All ({{all_products.count}}) <i class="fa-solid fa-caret-down"></i></a></p></td>
                     {% endif %}
@@ -52,7 +52,7 @@
         <section id="user-products">
             {% if not preview_products %}
                 <div class="content-center">
-                    <h2 style="font-family: Poppins;"><span style="font-size: 30px;color: var(--color2);"><i class="fa-regular fa-face-frown-open"></i></span> 0 results found</h2>
+                    <h2 style="font-family: DM Sans;"><span style="font-size: 30px;color: var(--color2);"><i class="fa-regular fa-face-frown-open"></i></span> 0 results found</h2>
                 </div>
             {% endif %}
             {% for product in preview_products %}
