@@ -32,9 +32,10 @@ main{
 .banner{
     width: 100%;
     height: 50vh;
-    background-image: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.55)),url('/static/Stw_App/images/STW-hero-image.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.65)),url('/static/Stw_App/images/STW-hero-image.jpg');
     background-size: cover;
     background-position: center;
+    filter: drop-shadow(5px 4px 4px rgb(185, 185, 185));
 }
 .cta-content{
     width: 100%;

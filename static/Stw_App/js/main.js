@@ -11,8 +11,3 @@ search.addEventListener("mouseout", () => {
         searchPredictions[i].style.display = "none";
         }
 });
-
-// COPYRIGHT YEAR
-let copyrightYear = document.getElementById("copyright-year")
-let current_year = (new Date()).getFullYear()
-copyrightYear.textContent = current_year

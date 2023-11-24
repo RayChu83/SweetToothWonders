@@ -57,7 +57,7 @@
         </header>
         {% if query and candy.count > 0 %}
             <div class="content-center" style="margin-top: 8px;">
-                <small style="font-family: Roboto; font-weight: bold;font-size: 14.5px;">{{candy.count}} search {% if candy.count == 1 %} result {% else %} results {% endif %} found for <a class="link_two" href="{% url 'Stw_App:marketplace' %}?search={{query}}">"{{query}}"</a></small>
+                <small style="font-family: DM Sans; font-weight: bold;font-size: 14.5px;">{{candy.count}} search {% if candy.count == 1 %} result {% else %} results {% endif %} found for <a class="link_two" href="{% url 'Stw_App:marketplace' %}?search={{query}}">"{{query}}"</a></small>
             </div>
         {% endif %}
         {% if candy %}

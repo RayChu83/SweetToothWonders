@@ -7,20 +7,20 @@
             <h4><a class="back-btn" href="{% url 'Stw_App:profile_page' pk=user.id %}"><i class="fa-solid fa-circle-chevron-left"></i> Go Back</a></h4>
         </header>
         <div class="content-center">
-            <h1 style="font-family: Poppins ;"><a class="link" href="{% url 'Stw_App:profile_page' pk=user.id %}">@{{user}}'s</a> feedback given:</h1>
+            <h1 style="font-family: DM Sans ;"><a class="link" href="{% url 'Stw_App:profile_page' pk=user.id %}">@{{user}}'s</a> feedback given:</h1>
         </div>
         <div class="profile-detail-options">
             <table>
                 <tr>
-                    <td width="50%"><p style="font-family: Poppins;"><a class="link_two" href="{% url 'Stw_App:profile_products' pk=user.id %}"><i class="fa-solid fa-caret-down"></i> Products</a></p></td>
-                    <td style="background-color: #dbdbdb;" width="50%"><p style="font-family: Poppins;"><a class="link_two" href="{% url 'Stw_App:profile_feedback' pk=user.id %}"><i class="fa-solid fa-caret-up"></i> Feedback Published</a></p></td>
+                    <td width="50%"><a class="link_two" style="width:100%" href="{% url 'Stw_App:profile_products' pk=user.id %}"><p style="font-family: DM Sans;"><i class="fa-solid fa-caret-down"></i> Products</p></a></td>
+                    <td style="background-color: #dbdbdb;" width="50%"><a class="link_two" style="width:100%" href="{% url 'Stw_App:profile_feedback' pk=user.id %}"><p style="font-family: DM Sans;"><i class="fa-solid fa-caret-up"></i> Feedback Published</p></a></td>
                 </tr>
             </table>
         </div>
         <section id="user-comments">
-            <div class="comment-section" style="font-family: 'Poppins';">
+            <div class="comment-section" style="font-family: 'DM Sans';">
                 {% if not comments %}
-                <h2 style="font-family: Poppins;"><span style="font-size: 30px;color: var(--color2);"><i class="fa-regular fa-face-frown-open"></i></span> 0 results found</h2>
+                <h2 style="font-family: DM Sans;"><span style="font-size: 30px;color: var(--color2);"><i class="fa-regular fa-face-frown-open"></i></span> 0 results found</h2>
                 {% else %}
                     <p>{{comments.count}} 
                         {% if comments.count > 1 %}
