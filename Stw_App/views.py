@@ -44,7 +44,7 @@ class Marketplace(TemplateView,ProductRatingMixin):
             brands.append(candy.brand)
 
         query = self.request.GET.get("search")
-        if query:
+        if query and query != "None":
             candy = Candy.objects.filter(Q(brand__icontains=query) | Q(candy_name__icontains=query) | Q(candy_description__icontains=query))
         else:
             candy = self.get_products_rating(request, Candy.objects.all().order_by("-id"))

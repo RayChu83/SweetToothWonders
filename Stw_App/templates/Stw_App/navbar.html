@@ -15,22 +15,22 @@
           {% if request.user.is_authenticated %}
           <li>
             <a href="{% url 'Stw_App:user_profile' %}"
-              ><i class="fa-solid fa-user"></i> Profile</a
+              > Profile</a
             >
           </li>
           <li>
             <a href="{% url 'Stw_App:marketplace' %}"
-              ><i class="fa-solid fa-store"></i> Martketplace</a
+              > Martketplace</a
             >
           </li>
           <li>
             <a href="{% url 'Stw_App:cart' %}"
-              ><i class="fa-solid fa-cart-shopping"></i> See Cart</a
+              > View Cart</a
             >
           </li>
           <li>
             <a class="logout-btn" href="{% url 'Stw_App:logout' %}"
-              ><i class="fa-solid fa-right-from-bracket"></i> Logout</a
+              > Logout</a
             >
           </li>
           {% else %}
@@ -41,12 +41,12 @@
           </li>
           <li>
             <a href="{% url 'Stw_App:signup' %}"
-              ><i class="fa-solid fa-user-plus"></i> Sign up</a
+              > Sign Up</a
             >
           </li>
           <li>
             <a href="{% url 'Stw_App:login' %}"
-              ><i class="fa-solid fa-right-from-bracket"></i> Login</a
+              > Login</a
             >
           </li>
           {% endif %}
